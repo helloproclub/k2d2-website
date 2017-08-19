@@ -1,0 +1,11 @@
+.navbar-default {
+    background-color: #0a1502;
+}
+.navbar-default .navbar-toggle {
+    border: none;
+}
+.jumbotron {
+    padding: 100px;
+    min-height: 100vh;
+    margin: 0;
+}
