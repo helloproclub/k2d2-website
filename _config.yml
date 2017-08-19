@@ -8,3 +8,10 @@ collections:
   uploads:
     title: Uploads
     output: true
+defaults:
+- scope:
+    path: ''
+    type: posts
+  values:
+    layout: post
+base_path: "/k2d2-website"

@@ -1,0 +1,17 @@
+{% include base.html %}
+<!DOCTYPE html>
+<html lang="en">
+{% include default_head.html %}
+<body>
+  {% include default_header.html %}
+  <div class="main-content">
+    <div class="container">
+      <h2>{{title}}</h2>
+      <article>
+        {{content}}
+      </article>
+    </div>
+  </div>
+  {% include default_js.html%}
+</body>
+</html>
