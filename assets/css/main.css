@@ -1,0 +1,73 @@
+/* GLOBAL STYLES
+-------------------------------------------------- */
+@media screen and (min-width: 768px) {
+    /* Remove the padding we set earlier */
+    .masthead,
+    .footer {
+        padding-right: 0;
+        padding-left: 0;
+    }
+}
+p {
+    font-size: 16px;
+}
+.flow-text p{
+    font-size: 1.4em;
+}
+/* NAVIGATION
+--------------------------------------------------- */
+.brand img{
+    max-height: 40px;
+}
+.brand {
+    line-height: 80px;
+}
+@media screen and (min-width: 768px) {
+    .brand-desc {
+        text-align: right;
+    }
+}
+.brand-desc {
+    /*text-align: left;*/
+}
+.navbar-brand img {
+    max-height: 22px;
+}
+.navbar {
+    margin-bottom: 0;
+    border: none;
+}
+.navbar-collapse {
+    padding-left: 0;
+    padding-right: 0;
+}
+.nav-justified {
+    background-color: #eee;
+}
+.nav-justified > li > a {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #777;
+    text-align: center;
+}
+.nav-justified > .active > a,
+.nav-justified > .active > a:hover,
+.nav-justified > .active > a:focus {
+    background-color: #ddd;
+    background-image: none;
+    /*-webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.15);*/
+    /*box-shadow: inset 0 3px 7px rgba(0,0,0,.15);*/
+}
+
+@media (min-width: 768px) {
+    .nav-justified {
+        max-height: 52px;
+    }
+}
+/* FOOTER
+--------------------------------------------------- */
+footer {
+    margin-top: 50px;
+}
