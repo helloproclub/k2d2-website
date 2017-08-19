@@ -1,0 +1,11 @@
+---
+layout: default
+title: k2d2 Blog
+show_on_menu: false
+---
+<h2>Blog</h2>
+<ul>
+  {% for post in site.posts %}
+    <li><a href="{{post.url}}">{{post.title}}</a></li>
+  {% endfor %}
+</ul>
