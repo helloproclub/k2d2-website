@@ -1,0 +1,65 @@
+---
+title: k2d2 Blog
+layout: default
+show_on_menu: false
+---
+
+<h2>Dokter</h2>
+<ul id="doctor-list">
+    <li>Loading...</li>
+</ul>
+
+<div id="doctor-detail">
+    <a href="#" role="button" class="btn btn-primary">Kembali</a>
+    <div>
+        <p>Loading...</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('document').ready(function(){
+        var handleNavigation = function(){
+            if(window.location.hash != '' && window.location.hash.split("=")[0] == "#id"){
+                $("#doctor-list").hide(); 
+                $("#doctor-detail").show();   
+                $("#doctor-detail div").children().remove();
+                $("#doctor-detail div").append("<p>Loading...</p>")                                 
+
+                var id = window.location.hash.split("=")[1];
+                //get doctor detail
+                $.get('https://k2d2-backend-dev.herokuapp.com/api/v1/doctors/'+id, function(data){
+                    console.log(data);
+                    $("#doctor-detail div").children().remove();
+                    //Show detail
+                    $("#doctor-detail div").append("<p>Nama: " + data.result.NAME + " " + data.result.LAST_NAME + "</p>");
+                    $("#doctor-detail div").append("<p>Rumah Sakit: " + data.result.COMPANY.TITLE + "</p>");                        
+                    $("#doctor-detail div").append("<p>Wikidata: " + data.result.COMPANY.wikidata + "</p>");                                                
+                    
+                }).fail(function(err){
+                    console.log(err);
+                })      
+                           
+                
+            }else{
+                $("#doctor-list").show();
+                $("#doctor-detail").hide(); 
+                $('#doctor-list').children().remove();
+                $('#doctor-list').append("<li>Loading...</li>");                           
+
+                $.get('https://k2d2-backend-dev.herokuapp.com/api/v1/doctors', function(data){
+                    console.log(data);
+                    $('#doctor-list').children().remove();
+                    data.result.forEach(function(it){
+                        $('#doctor-list').append("<li><a href='#id=" + it.ID + "'>" + it.NAME + " " + it.LAST_NAME + " | " + it.COMPANY.TITLE + "</a></li>")
+                    })
+                }).fail(function(err){
+                    console.log(err)
+                })
+            }
+        }
+
+        handleNavigation();
+
+        window.onhashchange = handleNavigation;
+    })
+</script>
