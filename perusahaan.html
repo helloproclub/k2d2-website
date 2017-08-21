@@ -1,0 +1,64 @@
+---
+title: k2d2 Blog
+layout: default
+show_on_menu: false
+---
+
+<h2>Perusahaan</h2>
+<ul id="content-list">
+    <li>Loading...</li>
+</ul>
+
+<div id="content-detail">
+    <a href="#" role="button" class="btn btn-primary">Kembali</a>
+    <div>
+        <p>Loading...</p>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('document').ready(function(){
+        var handleNavigation = function(){
+            if(window.location.hash != '' && window.location.hash.split("=")[0] == "#id"){
+                $("#content-list").hide(); 
+                $("#content-detail").show();   
+                $("#content-detail div").children().remove();
+                $("#content-detail div").append("<p>Loading...</p>")                                 
+
+                var id = window.location.hash.split("=")[1];
+                //get doctor detail
+                $.get('https://k2d2-backend-dev.herokuapp.com/api/v1/companies/'+id, function(data){
+                    console.log(data);
+                    $("#content-detail div").children().remove();
+                    //Show detail
+                    $("#content-detail div").append("<p>Nama: " + data.result.TITLE + "</p>");
+                    $("#content-detail div").append("<p>Wikidata: " + data.result.wikidata + "</p>");                                                
+                    
+                }).fail(function(err){
+                    console.log(err);
+                })      
+                           
+                
+            }else{
+                $("#content-list").show();
+                $("#content-detail").hide(); 
+                $('#content-list').children().remove();
+                $('#content-list').append("<li>Loading...</li>");                           
+
+                $.get('https://k2d2-backend-dev.herokuapp.com/api/v1/companies', function(data){
+                    console.log(data);
+                    $('#content-list').children().remove();
+                    data.result.forEach(function(it){
+                        $('#content-list').append("<li><a href='#id=" + it.ID + "'>" + it.TITLE + "</a></li>")
+                    })
+                }).fail(function(err){
+                    console.log(err)
+                })
+            }
+        }
+
+        handleNavigation();
+
+        window.onhashchange = handleNavigation;
+    })
+</script>
